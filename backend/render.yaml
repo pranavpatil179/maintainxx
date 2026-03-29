@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: maintainxx-backend
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python startup.py && uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: DATABASE_URL
+        value: sqlite+aiosqlite:///./data/maintainxx.db
+      - key: CMAPS_DATA_DIR
+        value: ./data/CMaps
+      - key: MODEL_REFRESH_INTERVAL
+        value: "300"
+      - key: SECRET_KEY
+        value: 9a2b3c4d5e6f7g8h9i0j1k2l3m4n5o6p7q8r9s0t
+      - key: ALGORITHM
+        value: HS256
+      - key: ACCESS_TOKEN_EXPIRE_MINUTES
+        value: "1440"
+      - key: GROQ_API_KEY
+        sync: false   # Set this manually in the Render dashboard
+    disk:
+      name: maintainxx-data
+      mountPath: /opt/render/project/src/data
+      sizeGB: 2

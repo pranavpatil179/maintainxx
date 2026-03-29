@@ -1,0 +1,26 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.eggs/
+dist/
+build/
+*.so
+
+# Local test scripts with secrets
+test_groq.py
+test_db.py
+
+# Local data (too large for git - Render regenerates these)
+maintainxx.db
+data/
+*.log
+backend.log
+
+# Secrets
+.env
+
+# OS
+.DS_Store
